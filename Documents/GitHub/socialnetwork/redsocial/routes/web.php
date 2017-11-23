@@ -17,10 +17,23 @@ Route::get('/', function () {
 
 Route::get('/home', function(){
 	$posts = DB::table('posts')
-	->leftJoin('users', 'users.id', 'posts.user_id')
+	->leftJoin('profiles', 'profiles.user_id', 'posts.user_id')
+	->leftJoin('users', 'posts.user_id', 'users.id')
+	->orderBy('posts.created_at', 'desc')->take(2)
 	->get();
 	return view('home', compact('posts'));
 });
+
+Route::get('postsjson', function(){
+	$posts_json = DB::table('posts')
+	->leftJoin('profiles', 'profiles.user_id', 'posts.user_id')
+	->leftJoin('users', 'posts.user_id', 'users.id')
+	->orderBy('posts.created_at', 'desc')->take(3)
+	->get();
+	return $posts_json;
+});
+
+Route::post('addPost', 'PostsController@addPost');
 
 Auth::routes();
 

@@ -15,9 +15,15 @@
           </div>
         </div>
 
+        <div class="col-md-2 pull-right">
+          <div class="panel panel-default">
+                <div class="panel-heading">Sidebar</div>
+          </div>
+        </div>
+
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Realizar publicación</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -26,25 +32,75 @@
                         </div>
                     @endif
 
-                    @foreach($posts as $post)
+                    <div class="col-md-12 center-con">
+                      <div class="posts_div">
+                         <div class="head_har">
+                             
+                          </div>
+                          <div style="background-color: #fff">
+                            <div class="row">
+                              <div class="col-md-1 pull-left">
+                                <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}"
+                                 style="width:40px; margin:10px" class="img-rounded">
+                              </div>
+                              <div class="col-md-11 pull-right">
+                                <form method="post" enctype="multipart/form-data" v-on:submit.prevent="addPost">
+                                <textarea v-model="content" id="postText" class="form-control"
+                                placeholder="¿Qué estás pensando?"></textarea>
+                                <button type="submit" class="btn btn-sm btn-info pull-right" style="margin:10px"
+                                 id="postBtn">Postear</button>
+                                </form>
+                                </br>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      </div>
 
-                    <div class="container">
-                        <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8" style="margin-left: 195px">
+            <div class="panel panel-default">
+                <div class="panel-heading">Publicaciones</div>
+
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <div class="container" id="app">
+
+                    
+
+
+                    
+
+                    
+
+                    <div v-for="post in posts">
+
+                        <div class="col-md-8">
+                        <br>
                             <div class="col-md-2 pull-left">
-                                <img src="{{url('../')}}/public/img/{{$post->pic}}" style="width: 100px; margin:10px" class="img-rounded">
+                                 <img :src="'{{Config::get('app.url')}}/redsocial/public/img/' + post.pic" style="width: 75px; margin:10px" class="img-rounded">
                             </div>
                             <div class="col-md-10">
-                                <h3>{{ucwords($post->name)}}</h3>
+                                <h4>@{{post.name}}</h4>
+                                <p align="pull-left" class="col-md-12" style="margin-left:10px" >@{{post.content}}</p>
                             </div>
                             
-                            <p class="col-md-12">{{$post->content}}</p>
+                            
 
                         </div>
-                        
+                    </div>
                         
                     </div>
 
-                    @endforeach
+                    
 
                 </div>
             </div>
