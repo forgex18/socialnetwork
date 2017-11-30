@@ -1,15 +1,31 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('newMessage','ProfileController@newMessage');
+Route::post('sendNewMessage', 'ProfileController@sendNewMessage');
+Route::post('/sendMessage', 'ProfileController@sendMessage');
+
+Route::get('/messages', function(){
+	return view('messages');
+});
+
+Route::get('/getMessages', function(){
+	$allUsers1 = DB::table('users')
+	->join('conversation', 'users.id', 'conversation.user_one')
+	->where('conversation.user_two', Auth::user()->id)->get();
+
+	$allUsers2 = DB::table('users')
+	->join('conversation', 'users.id', 'conversation.user_two')
+	->where('conversation.user_one', Auth::user()->id)->get();
+
+	return array_merge($allUsers1->toArray(), $allUsers2->toArray());
+});
+
+Route::get('/getMessages/{id}', function($id){
+	$userMsg = DB::table('messages')
+	->join('users', 'users.id', 'messages.user_from')
+	->where('messages.conversation_id', $id)->get();
+		return $userMsg;
+});
 
 Route::get('/', function () {
     return view('welcome');

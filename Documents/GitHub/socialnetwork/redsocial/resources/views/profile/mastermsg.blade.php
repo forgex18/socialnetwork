@@ -26,6 +26,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style>
+    .left-sidebar li { padding:10px;
+      border-bottom:1px solid #ddd;
+    list-style:none; margin-left:-20px}
+    .msgDiv li:hover{
+      cursor:pointer;
+    }
+    </style>
+
 </head>
 <body>
     <div id="app">
@@ -164,8 +173,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('/resources/assets/js/app.js') }}"></script>
-
+    <script src="{{ asset('/resources/assets/js/profile.js') }}"></script>
 
 </body>
 </html>

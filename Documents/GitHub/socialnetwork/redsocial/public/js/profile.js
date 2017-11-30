@@ -60,19 +60,21 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
+/* 0 */,
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);
-module.exports = __webpack_require__(2);
+module.exports = __webpack_require__(4);
 
 
 /***/ }),
-/* 1 */
+/* 4 */
 /***/ (function(module, exports) {
 
 
@@ -94,12 +96,18 @@ module.exports = __webpack_require__(2);
 //Vue.component('example', require('./components/Example.vue'));
 
 
-var app = new Vue({
-  el: '#app',
+var profile = new Vue({
+  el: '#profile',
   data: {
-    msg: 'Update New Post:',
+    msg: 'Haz click en el amigo con quien desee hablar:',
     content: '',
-    posts: []
+    privateMsgs: [],
+    singleMsgs: [],
+    msgFrom: '',
+    conID: '',
+    friend_id: '',
+    seen: false,
+    newMsgFrom: ''
   },
 
   ready: function ready() {
@@ -107,11 +115,9 @@ var app = new Vue({
   },
 
   created: function created() {
-    var _this = this;
-
-    axios.get('http://localhost/redsocial/index.php/postsjson').then(function (response) {
-      console.log(response); //muestra si sale bien
-      _this.posts = response.data;
+    axios.get('http://localhost/redsocial/index.php/getMessages').then(function (response) {
+      console.log(response.data); //muestra si sale bien
+      profile.privateMsgs = response.data;
     }).catch(function (error) {
       console.log(error); //muestra si sale mal
     });
@@ -119,29 +125,61 @@ var app = new Vue({
 
 
   methods: {
-    addPost: function addPost() {
-      //alert('test function');
-
-      axios.post('http://localhost/redsocial/index.php/addPost', {
-        content: this.content
-      }).then(function (response) {
-        console.log("Guardado correctamente"); //muestra si sale bien
-        if (response.status === 200) {
-          app.posts = response.data;
-        }
+    messages: function messages(id) {
+      axios.get('http://localhost/redsocial/index.php/getMessages/' + id).then(function (response) {
+        console.log(response.data); //muestra si sale bien
+        profile.singleMsgs = response.data;
+        profile.conID = response.data[0].conversation_id;
       }).catch(function (error) {
         console.log(error); //muestra si sale mal
+      });
+    },
+
+    inputHandler: function inputHandler(e) {
+      if (e.keyCode === 13 && !e.shiftKey) {
+        e.preventDefault();
+        this.sendMsg();
+      }
+    },
+    sendMsg: function sendMsg() {
+      if (this.msgFrom) {
+        axios.post('http://localhost/redsocial/index.php/sendMessage', {
+          conID: this.conID,
+          msg: this.msgFrom
+        }).then(function (response) {
+          console.log(response.data); //muestra si sale bien
+
+          if (response.status === 200) {
+            profile.singleMsgs = response.data;
+          }
+        }).catch(function (error) {
+          console.log(error); //muestra si sale mal
+        });
+      }
+    },
+
+
+    friendID: function friendID(id) {
+      profile.friend_id = id;
+    },
+
+    sendNewMsg: function sendNewMsg() {
+      axios.post('http://localhost/redsocial/index.php/sendNewMessage', {
+        friend_id: this.friend_id,
+        msg: this.newMsgFrom
+      }).then(function (response) {
+        console.log(response.data); // show if success
+        if (response.status === 200) {
+          window.location.replace('http://localhost/redsocial/index.php/messages');
+          profile.msg = 'your message has been sent successfully';
+        }
+      }).catch(function (error) {
+        console.log(error); // run if we have error
       });
     }
   }
 });
 //Vue.config.devtools = true;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

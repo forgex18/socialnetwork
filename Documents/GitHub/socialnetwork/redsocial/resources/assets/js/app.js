@@ -52,7 +52,6 @@ const app = new Vue({
   			.then(function (response) {
     			console.log("Guardado correctamente");		//muestra si sale bien
     			if(response.status === 200){
-    				alert('Tu post ha sido añadido');
     				app.posts = response.data;
     			}
   			})
