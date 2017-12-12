@@ -58,7 +58,19 @@ const app = new Vue({
   			.catch(function (error) {
     			console.log(error);			//muestra si sale mal
   			});
-    	}
+    	},
+
+      deletePost(content){
+        axios.get('http://localhost/redsocial/index.php/deletePost/' +content)
+        .then(response => {
+          console.log(response);    //muestra si sale bien
+          this.posts = response.data
+        })
+        .catch(function (error) {
+          console.log(error);     //muestra si sale mal
+        });
+      }
+
     }
 });
 //Vue.config.devtools = true;

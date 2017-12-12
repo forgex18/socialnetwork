@@ -132,6 +132,16 @@ var app = new Vue({
       }).catch(function (error) {
         console.log(error); //muestra si sale mal
       });
+    },
+    deletePost: function deletePost(content) {
+      var _this2 = this;
+
+      axios.get('http://localhost/redsocial/index.php/deletePost/' + content).then(function (response) {
+        console.log(response); //muestra si sale bien
+        _this2.posts = response.data;
+      }).catch(function (error) {
+        console.log(error); //muestra si sale mal
+      });
     }
   }
 });
