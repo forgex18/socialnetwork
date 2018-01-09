@@ -9,13 +9,7 @@
 
     <div class="row">
 
-        <div class="col-md-2">
-          <div class="panel panel-default">
-                <div class="panel-heading">Mis Videojuegos</div>
-                <div class="panel-heading">Buscar Videojuegos</div>
-          </div>
-        </div>
-
+        @include('profile.sidebar')
         <div class="col-md-2 pull-right">
           <div class="panel panel-default">
                 <div class="panel-heading">Chat</div>
@@ -80,23 +74,33 @@
                         <div class="col-md-7" style="background-color:#fff; border-bottom: #D4E6F1 5px solid; border-width: 1px">
                         <br>
                             <div class="col-md-2 pull-left">
-                                 <img :src="'{{Config::get('app.url')}}/redsocial/public/img/' + post.pic" style="width: 75px; height: 75px; margin:10px" class="img-rounded">
+                                 <img :src="'{{Config::get('app.url')}}/redsocial/public/img/' + post.pic" style="width: 65px; height: 65px; margin:10px" class="img-rounded">
                             </div>
                             <div class="col-md-10">
-                                <div class="col-md-9"><h4><a :href="'{{url('profile')}}/' +  post.slug" class="user_name"> @{{post.name}}</a></h4></div>
+                                <div class="col-md-9"><h4><a :href="'{{url('profile')}}/' +  post.slug" class="user_name"> @{{post.name}}</a></h4><span style="color:#AAADB3">@{{post.mytime | myOwnTime}} <i class="fa fa-hourglass-half" aria-hidden="true"></i></span><br></div>
 
                                 <div class="col-md-3" style="text-align: right" v-if="post.user_id == '{{Auth::user()->id}}'">
-                                  <a @click="deletePost(post.content)"><i class="fa fa-trash"></i></a>
-
-                                <div class="dropdown-menu">
-                                
-                                </div>
+                                  <a class="deleteBtn" @click="deletePost(post.idpost)"><i class="fa fa-trash"></i></a>
                                 </div>
 
-                                <p align="pull-left" class="col-md-12" style="margin-left:10px" >@{{post.content}}</p>
-                                
+                                <br>
+                                <p align="pull-left" class="col-md-12" style="margin-left:10px" ><br>@{{post.content}}</p>
                             </div>
-                            
+
+                            <div style=" margin-left: 15px" class="col-md-12">
+                            <p class="likeBtn" @click="likePost(post.idpost)">
+                                    <i class="fa fa-heart"></i>
+                            </p>
+                              @if(Auth::check())
+                              <div v-for="like in likes">
+                                <div v-if= "post.idpost==like.post_id && like.user_id=='{{Auth::user()->id}}'">
+                                  <p>
+                                    Te gusta
+                                  </p>
+                                </div>
+                              </div>
+                              @endif
+                            </div>
                             <br>
 
                         </div>

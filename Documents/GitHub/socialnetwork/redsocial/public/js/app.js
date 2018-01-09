@@ -99,7 +99,8 @@ var app = new Vue({
   data: {
     msg: 'Update New Post:',
     content: '',
-    posts: []
+    posts: [],
+    likes: []
   },
 
   ready: function ready() {
@@ -112,6 +113,17 @@ var app = new Vue({
     axios.get('http://localhost/redsocial/index.php/postsjson').then(function (response) {
       console.log(response); //muestra si sale bien
       _this.posts = response.data;
+      Vue.filter('myOwnTime', function (value) {
+        return moment(value).locale('es').fromNow();
+      });
+    }).catch(function (error) {
+      console.log(error); //muestra si sale mal
+    });
+
+    //LIKES
+    axios.get('http://localhost/redsocial/index.php/likes').then(function (response) {
+      console.log(response); //muestra si sale bien
+      _this.likes = response.data;
     }).catch(function (error) {
       console.log(error); //muestra si sale mal
     });
@@ -133,12 +145,22 @@ var app = new Vue({
         console.log(error); //muestra si sale mal
       });
     },
-    deletePost: function deletePost(content) {
+    deletePost: function deletePost(idpost) {
       var _this2 = this;
 
-      axios.get('http://localhost/redsocial/index.php/deletePost/' + content).then(function (response) {
+      axios.get('http://localhost/redsocial/index.php/deletePost/' + idpost).then(function (response) {
         console.log(response); //muestra si sale bien
         _this2.posts = response.data;
+      }).catch(function (error) {
+        console.log(error); //muestra si sale mal
+      });
+    },
+    likePost: function likePost(idpost) {
+      var _this3 = this;
+
+      axios.get('http://localhost/redsocial/index.php/likePost/' + idpost).then(function (response) {
+        console.log(response); //muestra si sale bien
+        _this3.posts = response.data;
       }).catch(function (error) {
         console.log(error); //muestra si sale mal
       });

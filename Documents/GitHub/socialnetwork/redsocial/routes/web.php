@@ -1,6 +1,22 @@
 <?php
 
+Route::get('send/{id_game}', 'mailController@send');
+
+Route::get('try', function(){
+	return App\posts::with('user', 'likes')->get();
+});
+
+Route::get('likes', function(){
+	return App\likes::all();
+});
+
+Route::get('/home', function(){
+	$likes = App\likes::all();
+	return view('home', compact('likes'));
+});
+
 Route::get('newMessage','ProfileController@newMessage');
+//Route::get('newMessageOnline','ProfileController@newMessageOnline');
 Route::post('sendNewMessage', 'ProfileController@sendNewMessage');
 Route::post('/sendMessage', 'ProfileController@sendMessage');
 
@@ -64,7 +80,7 @@ Route::get('/home', function(){
 			->whereIn('posts.user_id', $ids)
 			->orderBy('posts.created_at', 'desc')->take(5)
 			->get();
-			return view('home', compact('posts'));
+			return view('home', compact('post'));
         }
         else{
         	return view('home');
@@ -113,7 +129,9 @@ Route::get('postsjson', function(){
 
 Route::post('addPost', 'PostsController@addPost');
 
-Route::get('/deletePost/{content}', 'PostsController@deletePost');
+Route::get('/deletePost/{idpost}', 'PostsController@deletePost');
+
+Route::get('/likePost/{idpost}', 'PostsController@likePost');
 
 Auth::routes();
 
@@ -161,6 +179,14 @@ Route::group(['middleware' => 'auth'], function () {
 		
 });
 
+Route::get('/findGames', 'GameController@findGames');
+
 Route::get('posts', 'HomeController@index');
+
+Route::get('/game/{id}', 'GameController@index');
+
+Route::get('/subcription/{id_game}', 'GameController@subcription');
+
+Route::get('/mygames', 'GameController@mygames');
 
 Route::get('/logout', 'Auth\LoginController@logout');

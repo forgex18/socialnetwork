@@ -45,7 +45,7 @@
                         </div>
                       </div>
                       <div class="col-sm-6 col-md-8">
-                        <h4  align="center" class=""><span class="label label-primary">Sobre mi</span></h4>
+                        <h4  align="center" class=""><span class="label label-primary">Sobre miii</span></h4>
                         <p>{{$uData->about}}</p>
                       </div>
                     </div>

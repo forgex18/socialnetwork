@@ -9,13 +9,22 @@
      <script src="https://unpkg.com/vue"></script>
      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
      <script   src="http://code.jquery.com/jquery-1.12.4.min.js"></script>  
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.min.js"></script>
+  
+
 
 <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
+    <script>
+function alertaPartida() {
+    alert("Se ha realizado la busqueda de partida");
+}
+</script>
 
 
     <!-- CSRF Token -->
@@ -25,12 +34,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+    .likeBtn{
+              color: #4b4f56; font-weight:bold; cursor: pointer;
+            }
+    .deleteBtn{
+              color: #4b4f56; font-weight:bold; cursor: pointer;
+            }
+    
+    </style>
 
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+        <nav class="navbar navbar-default navbar-static-top" style="background-color: #D98880">
+            <div class="container" >
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -42,7 +60,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}">
+                    <a class="navbar-brand" href="{{ url('/home') }}" style="color: #E5E7E9">
                        <b> O-Play</b>
                     </a>
                 </div>
@@ -51,8 +69,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @if (Auth::check())
-                            <li><a href="{{url('/findFriends')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Buscar amigos</a></li>
-                            <li><a href="{{url('/requests')}}"><i class="fa fa-handshake-o" aria-hidden="true"></i> Solicitudes ({{App\friendships::where('status', null)->where('user_requested', Auth::user()->id)->count()}})</a></li>
+                            <li><a href="{{url('/findFriends')}}" style="color: #E5E7E9"><i class="fa fa-user-plus" aria-hidden="true"></i> Buscar amigos</a></li>
+                            <li><a href="{{url('/requests')}}" style="color: #E5E7E9"><i class="fa fa-handshake-o" aria-hidden="true"></i> Solicitudes ({{App\friendships::where('status', null)->where('user_requested', Auth::user()->id)->count()}})</a></li>
                             
                             &nbsp;
                         @endif
@@ -97,16 +115,16 @@
                             </li>
 
                             <li>
-                                <a href="{{url('/friends')}}"><i class="fa fa-users" aria-hidden="true"></i></a>
+                                <a href="{{url('/friends')}}" style="color: #E5E7E9"><i class="fa fa-users" aria-hidden="true"></i></a>
                             </li>
 
                             <li>
-                                <a href="{{url('/messages')}}"><i class="fa fa-comments" aria-hidden="true"></i></a>
+                                <a href="{{url('/messages')}}" style="color: #E5E7E9"><i class="fa fa-comments" aria-hidden="true"></i></a>
                             </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-bell-o fa-1x" aria-hidden="true"></i>
+                                    <i class="fa fa-bell-o fa-1x" aria-hidden="true" style="color: #E5E7E9"></i>
                                     <span class="badge"
                                     style="background: red; position: relative; top: -12px; left: -9px;">
                                         {{App\notifications::where('status', 1)
@@ -127,7 +145,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     @foreach($notes as $note)
                                     @if($note->status==1)
-                                    <li style="background: #E4E9F2; padding: 10px">
+                                    <li style="background: #E5E7E9; padding: 10px">
                                     @else
                                     <li style="padding: 10px">
                                     @endif
@@ -165,7 +183,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('/resources/assets/js/app.js') }}"></script>
-
+    <script src="{{ asset('/resources/assets/js/moment-with-locales.js') }}"></script>
 
 </body>
 </html>
