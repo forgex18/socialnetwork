@@ -36,6 +36,15 @@
 
                             <p align="center">{{$uData->city}} - {{$uData->country}}</p>
 
+                             @if($uData->user_id != Auth::user()->id)
+
+                            <p align="center">
+                            <a href="{{url('/')}}/newMessageOnline/{{$uData->user_id}}" 
+                                class="btn btn-info btn-sm">Mandar mensaje</a>
+                            </p>
+
+                            @endif
+
                             @if($uData->user_id == Auth::user()->id)
 
                             <p align="center"><a href="{{url('/editProfile')}}" class="btn btn-primary" role="button">Editar perfil</a></p>
@@ -47,6 +56,10 @@
                       <div class="col-sm-6 col-md-8">
                         <h4  align="center" class=""><span class="label label-primary">Sobre miii</span></h4>
                         <p>{{$uData->about}}</p>
+                      </div>
+                      <div class="col-sm-6 col-md-8">
+                        <h4  style="text-align: right" class=""></h4>
+                        
                       </div>
                     </div>
 

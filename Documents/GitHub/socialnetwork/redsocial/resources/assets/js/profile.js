@@ -88,6 +88,26 @@ const profile = new Vue({
        }
       },
 
+      sendMsgOnline(id){
+       if(this.msgFrom){
+         axios.post('http://localhost/redsocial/index.php/sendMessageOnline' +id, {
+          conID: this.conID,
+          msg: this.msgFrom
+          })
+          .then(function (response) {
+            console.log(response.data);    //muestra si sale bien
+
+            if(response.status === 200){
+              profile.singleMsgs = response.data;
+            }
+            
+          })
+          .catch(function (error) {
+            console.log(error);     //muestra si sale mal
+          });
+       }
+      },
+
       friendID: function(id){
        profile.friend_id = id;
       },

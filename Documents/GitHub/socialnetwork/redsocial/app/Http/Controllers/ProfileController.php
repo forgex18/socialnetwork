@@ -248,7 +248,7 @@ class ProfileController extends Controller
           
         }
     }
-/*
+
     public function newMessageOnline($id){
       $uid = Auth::user()->id;
       
@@ -256,9 +256,9 @@ class ProfileController extends Controller
       ->where('id', $id)
       ->get();
 
-      return view('newMessage', compact('user', $user));
+      return view('newMessageOnline', compact('user', $user));
     }
 
-    */
+    
 
 }

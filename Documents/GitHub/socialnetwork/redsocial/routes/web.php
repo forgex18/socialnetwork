@@ -16,7 +16,7 @@ Route::get('/home', function(){
 });
 
 Route::get('newMessage','ProfileController@newMessage');
-//Route::get('newMessageOnline','ProfileController@newMessageOnline');
+Route::get('newMessageOnline/{id}','ProfileController@newMessageOnline');
 Route::post('sendNewMessage', 'ProfileController@sendNewMessage');
 Route::post('/sendMessage', 'ProfileController@sendMessage');
 
