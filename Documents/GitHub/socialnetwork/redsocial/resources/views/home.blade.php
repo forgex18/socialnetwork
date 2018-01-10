@@ -10,11 +10,7 @@
     <div class="row">
 
         @include('profile.sidebar')
-        <div class="col-md-2 pull-right">
-          <div class="panel panel-default">
-                <div class="panel-heading">Chat</div>
-          </div>
-        </div>
+        @include('profile.searchSidebar')
 
         <div class="col-md-8">
             <div class="panel panel-default">
@@ -71,7 +67,8 @@
 
                     <div v-for="post,key in posts">
 
-                        <div class="col-md-7" style="background-color:#fff; border-bottom: #D4E6F1 5px solid; border-width: 1px">
+                        <div class="col-md-7" style="background-color:#fff; border-bottom: #D4E6F1 5px solid; border-width: 1px" id=myList>
+                        <li style="list-style:none">
                         <br>
                             <div class="col-md-2 pull-left">
                                  <img :src="'{{Config::get('app.url')}}/redsocial/public/img/' + post.pic" style="width: 65px; height: 65px; margin:10px" class="img-rounded">
@@ -102,7 +99,7 @@
                               @endif
                             </div>
                             <br>
-
+                            </li>
                         </div>
                     </div>
                         

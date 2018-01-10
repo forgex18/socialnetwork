@@ -13,6 +13,7 @@
     <div class="row">
 
         @include('profile.sidebar')
+        @include('profile.searchSidebar')
 
         <div class="col-md-8">
             <div class="panel panel-default">
@@ -25,13 +26,13 @@
                         </div>
                     @endif
                     
-                    <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-12 col-md-12" id="myList">
                         @if (session()->has('msg'))
                                 <p class="alert alert-success"> {{session()->get('msg')}} </p>
                         @endif
 
                         @foreach($friends as $uList)
-
+                        <li style="list-style:none">
                         <div class="row" style="border-bottom:1px solid #ccc; margin-bottom:15px">
                             <div class="col-md-2 pull-left">
                                 <img src="{{url('../')}}/public/img/{{$uList->pic}}" width="80px" height="80px" class="img-rounded"/>
@@ -54,6 +55,7 @@
                                 
                             </div>
                       </div>
+                      </li>
                       @endforeach
                     </div>
                   </div>

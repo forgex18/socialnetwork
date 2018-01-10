@@ -11,6 +11,8 @@
      <script   src="http://code.jquery.com/jquery-1.12.4.min.js"></script>  
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
   
 
 
@@ -26,6 +28,25 @@ function alertaPartida() {
 }
 </script>
 
+<script>
+    $( function() {
+    $( "#searchPlayerr" ).autocomplete({
+      source: "{{ url('search') }}"
+    });
+  } );
+</script>
+
+<script>
+$(document).ready(function(){
+  $("#searchPlayer").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -34,6 +55,7 @@ function alertaPartida() {
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <style>
     .likeBtn{
               color: #4b4f56; font-weight:bold; cursor: pointer;

@@ -45,7 +45,7 @@
    <div  v-if="seen">
       
       <textarea class="col-md-12 form-control" v-model="newMsgFrom"></textarea><br>
-      <input type="button" value="send message" @click="sendNewMsg()">
+      <input type="button" value="Enviar mensaje" @click="sendNewMsg()">
   </div>
 
   </div>

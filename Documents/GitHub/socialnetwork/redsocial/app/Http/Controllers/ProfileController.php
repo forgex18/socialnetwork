@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\friendships;
 use App\notifications;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -259,6 +260,46 @@ class ProfileController extends Controller
       return view('newMessageOnline', compact('user', $user));
     }
 
-    
+    public function search(Request $request){
+      $term = $request->term;
+      $nicks = User::where('nick', 'LIKE', '%'.$term.'%')->get();
+      if(count($nicks) == 0){
+        $searchResult[] = 'No se encuentran resultados';
+      }else{
+        foreach ($nicks as $key => $value) {
+          $searchResult[] = $value->nick;
+        }
+      }
+      return $searchResult;
+      /*$term = $request->term;
+      $nick = users::where('nick', 'LIKE', "%$term%")->get();
+      return $nick;*/
+      /*
+      return $availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+      ];*/
+    }
+      
 
 }
