@@ -7,10 +7,9 @@ use App\Traits\Friendable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\profile;
 
-class User extends Authenticatable
+class games extends Authenticatable
 {
-    use Notifiable;
-    use Friendable;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'slug', 'gender', 'pic', 'nick', 'age'
+        'title', 'photo', 'des', 'comp', 'year', 'video'
     ];
 
     /**
@@ -27,16 +26,12 @@ class User extends Authenticatable
      * @var array
      */
 
-    public function isRole(){
-        return $this->role;
-    }
+   public $timestamps = false;
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+   
 
-    public function user()
+    public function game()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\games');
     }
 }

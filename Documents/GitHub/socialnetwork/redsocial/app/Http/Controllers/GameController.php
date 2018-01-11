@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\friendships;
 use App\notifications;
+use App\games;
 
 class GameController extends Controller
 {
@@ -65,5 +66,40 @@ class GameController extends Controller
 
         return view('profile.mygames', compact('mygames'));
     }
+
+
+     public function updateGames(){
+        $uid = Auth::user()->id;
+
+        $allGames = DB::table('games')->get();
+       return view('profile.updateGames', compact('allGames'));
+    }
+
+    public function newGames(Request $request) {
+      games::create($request->all());
+
+      return redirect('updateGames');
+      }
+
+      public function picGame($id_game){
+        $game = DB::table('games')->where('id', $id_game)->get();
+        return view('profile.picGame', compact('game'));
+      }
+
+      public function uploadPhotoGame(Request $request, $id_game){
+        $file=$request->file('pic');
+        $filename = $file->getClientOriginalName();
+
+        $path='public/img/games';
+        $file->move($path, $filename);
+
+        //Actualizamos la foto en la bd
+
+
+        DB::table('games')->where('id', $id_game)->update(['photo'=>$filename]);
+
+        return redirect('login');
+    }
+
 
 }

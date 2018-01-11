@@ -191,3 +191,23 @@ Route::get('/subcription/{id_game}', 'GameController@subcription');
 Route::get('/mygames', 'GameController@mygames');
 
 Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::get('/updateGames', 'GameController@updateGames');
+/*
+  Route::get('/changePhotoGame/{id_game}', function(){
+    return view('profile.picGame');
+  });
+*/
+  Route::get('/picGame/{id_game}', 'GameController@picGame');
+Route::post('/uploadPhotoGame/{id_game}', 'GameController@uploadPhotoGame');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+  Route::get('/', function(){
+    return view('newGame');
+  });
+
+  Route::post('/newGames', 'GameController@newGames');
+
+
+});
+

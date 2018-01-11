@@ -12,7 +12,7 @@
 
         @include('profile.sidebar')
 
-        @foreach($userData as $uData)
+        @foreach($data as $uData)
     
         <div class="col-md-8">
             <div class="panel panel-default">
