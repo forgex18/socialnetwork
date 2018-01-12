@@ -48,7 +48,12 @@
                                 
                                 <p>
                                     <a href="{{url('/')}}/send/{{$uList->id}}" 
-                                       class="btn btn-info btn-sm" onclick="alertaPartida()">Buscar partida</a>
+                                       class="btn btn-info btn-sm">Buscar partida</a>
+                                </p>
+
+                                <p>
+                                    <a href="{{url('/')}}/unSub/{{$uList->id}}" 
+                                       class="btn btn-danger btn-sm">Eliminar suscripción</a>
                                 </p>
                                 
                             </div>

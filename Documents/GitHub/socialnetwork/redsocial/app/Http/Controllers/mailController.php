@@ -60,7 +60,7 @@ class mailController extends Controller
 	    		}
     		}	
     	});
-        return back();
+        return back()->with('msg', 'Se ha realizado una busqueda de partida');
     }
     
 }

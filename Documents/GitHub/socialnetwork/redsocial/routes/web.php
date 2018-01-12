@@ -201,6 +201,27 @@ Route::get('/updateGames', 'GameController@updateGames');
   Route::get('/picGame/{id_game}', 'GameController@picGame');
 Route::post('/uploadPhotoGame/{id_game}', 'GameController@uploadPhotoGame');
 
+Route::get('/delGame/{id}', function($id){
+             
+              DB::table('subscriptions')
+              ->where('id_game', $id)
+              ->delete();
+              DB::table('games')
+              ->where('id', $id)
+              ->delete();
+               return back()->with('msg', 'Juego eliminado');
+        });
+
+Route::get('/unSub/{id}', function($id){
+             $loggedUser = Auth::user()->id;
+              DB::table('subscriptions')
+              ->where('id_subscriptor', $loggedUser)
+              ->where('id_game', $id)
+              ->delete();
+
+               return back()->with('msg', 'Ya no estas suscrito a este videojuego');
+        });
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
   Route::get('/', function(){
     return view('newGame');

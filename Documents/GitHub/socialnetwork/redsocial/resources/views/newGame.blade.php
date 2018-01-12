@@ -58,12 +58,6 @@
                               <span id="basic-addon1">Descripción</span>
                               <textarea type="text" class="form-control" rows="6" style="width:650px" name="des"></textarea>
                             </div>
-
-
-                            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-
-                            <input type="file" name="photo" class="form-control" style="width:650px"/>
-                            
                             <br>
                             <div class="input-group">
                               <input type="submit" class="btn btn-success pull-right">

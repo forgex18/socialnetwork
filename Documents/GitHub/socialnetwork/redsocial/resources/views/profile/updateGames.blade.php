@@ -44,21 +44,17 @@
 
 
                             <div class="col-md-3 pull-right"> 
-                             <?php 
-                                $check = DB::table('subscriptions')
-                                        ->where('id_game', '=', $uList->id)
-                                        ->where('id_subscriptor', '=', Auth::user()->id)
-                                        ->first();
-                                
-                                if($check ==''){
-                                ?>
+                            
                                    <p>
                                         <a href="{{url('/')}}/picGame/{{$uList->id}}" 
                                            class="btn btn-info btn-sm">Añadir portada</a>
                                     </p>
-                                <?php } else {?>
-                                    <p>Suscrito</p>
-                                <?php }?>    
+
+                                    <p>
+                                         <a href="{{url('/delGame')}}/{{$uList->id}}" 
+                                       class="btn btn-danger btn-sm">Eliminar juego</a>
+                                    </p>
+                                    
                             </div>
                             
                       </div>
