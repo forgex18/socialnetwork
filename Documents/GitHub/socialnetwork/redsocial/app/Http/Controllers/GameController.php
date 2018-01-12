@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\friendships;
 use App\notifications;
 use App\games;
+use Mail;
 
 class GameController extends Controller
 {
@@ -99,6 +100,58 @@ class GameController extends Controller
         DB::table('games')->where('id', $id_game)->update(['photo'=>$filename]);
 
         return redirect('login');
+    }
+
+    public function play($nick, $id_game){
+
+      Mail::send(['text' =>'mailView'], ['name', 'Fran'], function($message) use ($id_game, $nick){
+
+      $users = DB::table('subscriptions')
+      ->where('id_game', $id_game)
+      ->get();
+
+      if($users){
+            foreach($users as $uList){
+              $ids[] = $uList->id_subscriptor;
+              $uList->id_subscriptor; 
+            }
+
+      $game = DB::table('games')
+      ->where('id', $id_game)
+      ->get();
+
+      foreach ($game as $uGame) {
+          $title = $uGame->title;
+        }
+
+
+        $correo = DB::table('users')
+        ->whereIn('id', $ids)
+        ->get();
+
+
+      foreach ($correo as $key => $value) {
+        if($value->id != Auth::user()->id){
+
+          $notifications = new notifications;
+          $notifications->user_hero = $value->id;
+          $notifications->user_logged = Auth::user()->id;
+          $notifications->status = '1'; //notificacion sin leer
+          $notifications->note = 'busca partida de '.$title;
+          $notifications->save();
+
+          $mails = $value->email;
+              
+              //echo $mails;
+              $content = $nick." busca partida - ".$title;
+            $message->to($mails)->subject($content);
+            $message->from('oplayredsocial@gmail.com', 'O-Play');
+        }
+      }
+    }
+    });
+        return back()->with('msg', 'Se ha realizado una busqueda de partida');
+      
     }
 
 

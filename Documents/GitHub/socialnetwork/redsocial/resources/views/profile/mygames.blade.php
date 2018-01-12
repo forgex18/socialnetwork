@@ -47,7 +47,7 @@
                              <div class="col-md-3 pull-right"> 
                                 
                                 <p>
-                                    <a href="{{url('/')}}/send/{{$uList->id}}" 
+                                    <a href="{{url('/')}}/play/{{Auth::user()->nick}}/{{$uList->id}}" 
                                        class="btn btn-info btn-sm">Buscar partida</a>
                                 </p>
 

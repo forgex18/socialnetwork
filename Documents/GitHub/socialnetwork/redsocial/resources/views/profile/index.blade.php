@@ -12,7 +12,7 @@
 
         @include('profile.sidebar')
 
-        @foreach($data as $uData)
+        @foreach($userData as $uData)
     
         <div class="col-md-8">
             <div class="panel panel-default">
@@ -31,7 +31,7 @@
                             <h3 align="center">{{ucwords($uData->nick)}}</h3>
                             <img src="{{url('../')}}/public/img/{{$uData->pic}}" width="120px" heigth="120px" class="img-circle"/>
                           <div class="caption">
-                            @foreach ($data as $profiledata)
+                            @foreach ($userData as $profiledata)
                             @endforeach
 
                             <p align="center">{{$uData->city}} - {{$uData->country}}</p>

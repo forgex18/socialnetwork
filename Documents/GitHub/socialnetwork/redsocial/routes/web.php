@@ -134,6 +134,8 @@ Route::get('/deletePost/{idpost}', 'PostsController@deletePost');
 
 Route::get('/likePost/{idpost}', 'PostsController@likePost');
 
+Route::get('/play/{nick}/{id}', 'GameController@play');
+
 Auth::routes();
 
 /*Aqui creamos un middleware para que solo los usuarios logueados puedan acceder a la vista index de profile*/

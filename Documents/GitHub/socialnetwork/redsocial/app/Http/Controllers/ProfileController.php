@@ -20,7 +20,7 @@ class ProfileController extends Controller
         ->where('slug', $slug)
         ->get();
 
-    	return view('profile.index', compact('userData'))->with('data', $data);
+    	return view('profile.index')->with('userData', $userData);
     }
 
     public function uploadPhoto(Request $request){
