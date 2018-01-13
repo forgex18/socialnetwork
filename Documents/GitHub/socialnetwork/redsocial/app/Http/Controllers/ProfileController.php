@@ -39,9 +39,9 @@ class ProfileController extends Controller
     }
 
     public function editProfileForm(){
-        $data = DB::table('users')->leftJoin('profiles', 'profiles.user_id','users.id')->where('users.id', Auth::user()->id)->get();
+        $userData = DB::table('users')->leftJoin('profiles', 'profiles.user_id','users.id')->where('users.id', Auth::user()->id)->get();
 
-        return view('profile.editProfile')->with('data', $data);
+        return view('profile.editProfile')->with('userData', $userData);
     }
 
     public function updateProfile(Request $request){
@@ -49,9 +49,9 @@ class ProfileController extends Controller
         DB::table('profiles')->where('user_id', $user_id)->update($request->except('_token'));
         //return back();
 
-        $data = DB::table('users')->leftJoin('profiles', 'profiles.user_id','users.id')->where('users.id', Auth::user()->id)->get();
+        $userData = DB::table('users')->leftJoin('profiles', 'profiles.user_id','users.id')->where('users.id', Auth::user()->id)->get();
 
-        return view('profile.index')->with('data', $data);
+        return view('profile.index')->with('userData', $userData);
     }
 
     public function findFriends(){

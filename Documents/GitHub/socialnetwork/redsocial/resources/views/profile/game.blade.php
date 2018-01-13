@@ -50,9 +50,29 @@
                         
 
                         <p align="right">
-                            <br>
-                            <a href="" 
-                            class="btn btn-info btn-sm">Suscribirse</a>
+                            <?php 
+                                $check = DB::table('subscriptions')
+                                        ->where('id_game', '=', $uData->id)
+                                        ->where('id_subscriptor', '=', Auth::user()->id)
+                                        ->first();
+                                
+                                if($check ==''){
+                                ?>
+                                   <p>
+                                        <a href="{{url('/')}}/subcription/{{$uData->id}}" 
+                                           class="btn btn-info btn-sm">Suscribirse</a>
+                                    </p>
+                                <?php } else {?>
+                                    <p>
+                                    <a href="{{url('/')}}/play/{{Auth::user()->nick}}/{{$uData->id}}" 
+                                       class="btn btn-info btn-sm">Buscar partida</a>
+                                </p>
+
+                                <p>
+                                    <a href="{{url('/')}}/unSub/{{$uData->id}}" 
+                                       class="btn btn-danger btn-sm">Eliminar suscripción</a>
+                                </p>
+                                <?php }?>    
                         </p>
                       </div>
                     </div>

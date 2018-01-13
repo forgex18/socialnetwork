@@ -31,7 +31,7 @@
                             <h3 align="center">{{ucwords(Auth::user()->nick)}}</h3> <br>
                             <img src="{{url('../')}}/public/img/{{Auth::user()->pic}}" width="150px" heigth="150px" class="img-circle"/> <br>
                           <div class="caption">
-                            @foreach ($data as $profiledata)
+                            @foreach ($userData as $profiledata)
                             @endforeach
 
                             <p align="center">{{$profiledata->city}} - {{$profiledata->country}}</p> <br>
@@ -45,7 +45,7 @@
 
                       
                         
-                        @foreach ($data as $profiledata)
+                        @foreach ($userData as $profiledata)
                         @endforeach
 
                         
