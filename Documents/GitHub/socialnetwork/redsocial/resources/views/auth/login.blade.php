@@ -39,15 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recuerdame
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
@@ -55,9 +47,6 @@
                                     Enviar
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    ¿Olvidaste tu contraseña?
-                                </a>
                             </div>
                         </div>
                     </form>

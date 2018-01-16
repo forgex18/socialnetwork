@@ -69,7 +69,7 @@ $(document).ready(function(){
 </head>
 <body>
     <div>
-        <nav class="navbar navbar-default navbar-static-top" style="background-color: #D98880">
+        <nav class="navbar navbar-default navbar-static-top" style="background-color: #11A9A9">
             <div class="container" >
                 <div class="navbar-header">
 

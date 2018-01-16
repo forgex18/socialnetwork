@@ -5,9 +5,9 @@
 
 <div class="container">
 
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="background: transparent">
       <li><a href="{{url('/home')}}">Inicio</a></li>
-      <li><a href="">Amigos</a></li>
+      <li><a href="">Mis Juegos</a></li>
     </ol>
 
     <div class="row">

@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="container" id="profile">
+
+<ol class="breadcrumb" style="background: transparent">
+      <li><a href="{{url('/home')}}">Inicio</a></li>
+      <li><a href="">Nueva conversación</a></li>
+      
+    </ol>
 <div class="col-md-12 msgDiv" >
 
   <div style="background-color:#fff" class="col-md-3 pull-left">

@@ -3,9 +3,10 @@
 @section('content')
 <div class="container">
 
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="background: transparent">
       <li><a href="{{url('/home')}}">Inicio</a></li>
-      <li><a href="{{url('/profile')}}/{{Auth::user()->slug}}">Perfil</a></li>
+      <li><a href="{{url('/findGames')}}">Buscar Juegos</a></li>
+      <li><a href="">Juego</a></li>
     </ol>
 
     <div class="row">

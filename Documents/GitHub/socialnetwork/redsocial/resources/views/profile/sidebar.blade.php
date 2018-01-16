@@ -6,6 +6,9 @@
                 <div class="panel-heading">
                     <a href="{{url('/mygames')}}" style="color: black; text-decoration: none"><i class="fa fa-gamepad" aria-hidden="true"></i> Mis Videojuegos</a>
                 </div>
+                <div class="panel-heading">
+                    <a href="{{url('/wantGame')}}" style="color: black; text-decoration: none"><i class="fa fa-gamepad" aria-hidden="true"></i> Solicitar juego</a>
+                </div>
                 @if(Auth::user()->role)
                 <div class="panel-heading">
                     <a href="{{url('/admin')}}" style="color: black; text-decoration: none"><i class="fa fa-plus" aria-hidden="true"></i> Añadir Juego</a>

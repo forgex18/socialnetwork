@@ -5,7 +5,7 @@
 
 <div class="container">
 
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" style="background: transparent">
       <li><a href="{{url('/home')}}">Inicio</a></li>
       <li><a href="">Solicitudes</a></li>
     </ol>

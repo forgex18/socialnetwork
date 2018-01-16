@@ -15,7 +15,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top" style="background-color: #11A9A9">
             <div class="container">
                 <div class="navbar-header">
 
@@ -28,8 +28,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/') }}" style="color: #E5E7E9">
+                        O-Play
                     </a>
                 </div>
 
@@ -47,8 +47,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
-                            <li><a href="{{ route('register') }}">Registrarse</a></li>
+                            <li><a href="{{ route('login') }}" style="color: #E5E7E9">Iniciar sesión</a></li>
+                            <li><a href="{{ route('register') }}" style="color: #E5E7E9">Registrarse</a></li>
                         @else
 
                         <li><a href="{{url('/profile')}}/{{ Auth::user()->slug}}">

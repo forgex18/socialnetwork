@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\friendships;
 use App\notifications;
 use App\games;
+use App\demands;
 use Mail;
 
 class GameController extends Controller
@@ -82,6 +83,12 @@ class GameController extends Controller
       return redirect('updateGames');
       }
 
+      public function wantGames(Request $request) {
+      demands::create($request->all());
+
+      return redirect('login');
+      }
+
       public function picGame($id_game){
         $game = DB::table('games')->where('id', $id_game)->get();
         return view('profile.picGame', compact('game'));
@@ -154,5 +161,6 @@ class GameController extends Controller
       
     }
 
+    
 
 }

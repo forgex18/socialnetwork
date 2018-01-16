@@ -192,6 +192,12 @@ Route::get('/subcription/{id_game}', 'GameController@subcription');
 
 Route::get('/mygames', 'GameController@mygames');
 
+Route::post('/wantGames', 'GameController@wantGames');
+Route::get('/wantGame', function(){
+    return view('wantGame');
+  });
+
+
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/updateGames', 'GameController@updateGames');
