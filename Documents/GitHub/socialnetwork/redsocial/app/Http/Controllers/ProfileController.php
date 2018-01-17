@@ -271,35 +271,23 @@ class ProfileController extends Controller
         }
       }
       return $searchResult;
-      /*$term = $request->term;
-      $nick = users::where('nick', 'LIKE', "%$term%")->get();
-      return $nick;*/
-      /*
-      return $availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-      ];*/
     }
       
+    public function holidays(){
+      $uid = Auth::user()->id;
+      $value = Auth::user()->noti;
+      
+
+      if($value==null){
+        $option=1;
+      }
+      else{
+        $option=null;
+      }
+
+      DB::table('users')->where('id', $uid)->update(['noti'=>$option]);
+      return back()->with('msg', 'Notificaciones por correo modificadas');
+
+    }
 
 }

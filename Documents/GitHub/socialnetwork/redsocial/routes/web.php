@@ -20,6 +20,7 @@ Route::get('newMessageOnline/{id}','ProfileController@newMessageOnline');
 Route::post('sendNewMessage', 'ProfileController@sendNewMessage');
 Route::post('/sendMessage', 'ProfileController@sendMessage');
 Route::get('search', 'ProfileController@search');
+Route::get('holidays', 'ProfileController@holidays');
 
 Route::get('/messages', function(){
 	return view('messages');

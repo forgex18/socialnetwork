@@ -147,12 +147,15 @@ class GameController extends Controller
           $notifications->note = 'busca partida de '.$title;
           $notifications->save();
 
-          $mails = $value->email;
-              
-              //echo $mails;
-              $content = $nick." busca partida - ".$title;
-            $message->to($mails)->subject($content);
-            $message->from('oplayredsocial@gmail.com', 'O-Play');
+          if($value->noti==null){
+
+            $mails = $value->email;
+                
+                //echo $mails;
+                $content = $nick." busca partida - ".$title;
+              $message->to($mails)->subject($content);
+              $message->from('oplayredsocial@gmail.com', 'O-Play');
+          }
         }
       }
     }

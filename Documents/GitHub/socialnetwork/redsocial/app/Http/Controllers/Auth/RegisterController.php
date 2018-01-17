@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'nick' => 'required|string|max:255|unique:users',
-            'age' => 'required',
+            
 
         ]);
     }
@@ -71,7 +71,6 @@ class RegisterController extends Controller
         $pic_path = 'user.png';
         $user = User::create([
             'name' => $data['name'],
-            'age' => $data['age'],
             'gender' => $data['gender'],
             'nick' => $data['nick'],
             'slug' => str_slug($data['nick'], '-'),

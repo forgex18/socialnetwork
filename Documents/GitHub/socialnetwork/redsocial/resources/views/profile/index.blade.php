@@ -49,6 +49,13 @@
 
                             <p align="center"><a href="{{url('/editProfile')}}" class="btn btn-primary" role="button">Editar perfil</a></p>
 
+                            @if(Auth::user()->noti == null)
+                            <p align="center"><a href="{{url('/holidays')}}" class="btn btn-primary" role="button">Activar vacaciones</a></p>
+                            @endif
+                            @if(Auth::user()->noti != null)
+                            <p align="center"><a href="{{url('/holidays')}}" class="btn btn-primary" role="button">Desactivar vacaciones</a></p>
+                            @endif
+
                             @endif
                           </div>
                         </div>

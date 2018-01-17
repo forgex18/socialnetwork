@@ -92,6 +92,7 @@ const app = new Vue({
         .then(response => {
           console.log(response);    //muestra si sale bien
           this.posts = response.data
+          window.location.reload(true);
         })
         .catch(function (error) {
           console.log(error);     //muestra si sale mal

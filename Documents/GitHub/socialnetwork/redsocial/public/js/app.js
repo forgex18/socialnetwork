@@ -161,6 +161,7 @@ var app = new Vue({
       axios.get('http://localhost/redsocial/index.php/likePost/' + idpost).then(function (response) {
         console.log(response); //muestra si sale bien
         _this3.posts = response.data;
+        window.location.reload(true);
       }).catch(function (error) {
         console.log(error); //muestra si sale mal
       });
